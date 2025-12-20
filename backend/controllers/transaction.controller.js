@@ -30,7 +30,7 @@
 
 
 const { processCSVUpload } = require("../services/transaction.service");
-
+const {csvCategorizationScript} = require("../scripts/categorizeCsv");
 async function uploadCsvHandler(req, res) {
   try {
     //const userId = req.user.id;
@@ -47,7 +47,8 @@ async function uploadCsvHandler(req, res) {
       accountId,
       fileBuffer: req.file.buffer
     });
-
+    
+    csvCategorizationScript(userId).catch(err=>console.log("csv categorization error"));
     res.json({
       success: true,
       ...result
@@ -58,5 +59,7 @@ async function uploadCsvHandler(req, res) {
     res.status(500).json({ error: err.message });
   }
 }
+
+
 
 module.exports = { uploadCsvHandler };

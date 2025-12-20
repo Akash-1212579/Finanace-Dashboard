@@ -1,0 +1,68 @@
+step 1 :- 
+adding existing catgories to category table example
+
+id | name           | type     | userId
+---+----------------+----------+-------
+1  | Food           | EXPENSE  | 10
+2  | Healthcare     | EXPENSE  | 10
+3  | Entertainment  | EXPENSE  | 10
+4  | Salary         | INCOME   | 10
+
+main issue is with  storing it with userId for this i can store userId 
+when user uploads csv from auth will get userId.
+
+so now 
+user will upload csv    
+        |
+        | 
+        ↓
+after upload i will get userId,csvFile in req body        
+        |(controller part)
+        | 
+        ↓
+after getting csv file first parsing it into a csv strings and converting
+it in to a json and normalizing json and store(didnt storing json directly) 
+but initially we have stored categoryId column data as null
+but now i want to categorize using llm 
+
+
+LLM PART :-
+
+giving llm data in objects of transactions like (descriptions means merchant name mostly)
+
+this is means transactionid(after uploading we will get that id)
+[
+  { "id": 101, "description": "Zomato order" },
+  { "id": 102, "description": "Apollo pharmacy" }
+]
+
+then LLM give output as
+[
+  { "transactionId": 101, "category": "Food" },
+  { "transactionId": 102, "category": "Healthcare" }
+]
+now from category table getting categoryId  where categoryName && userId
+and setting that categoryId to a categoryId(in transaction table)
+eg
+UPDATE Transaction
+SET categoryId = 1
+WHERE id = 101; 
+
+
+sample output tested with postman
+ {
+    "1": "Shopping",
+    "2": "Transport",
+    "3": "Utilities",
+    "4": "Entertainment",
+    "5": "Healthcare",
+}
+
+this is what llmservice will return
+[
+  { transactionId: 1, category: 'Shopping' },
+  { transactionId: 2, category: 'Transport' },
+  { transactionId: 3, category: 'Utilities' },
+  { transactionId: 4, category: 'Entertainment' },
+  { transactionId: 5, category: 'Healthcare' }
+]

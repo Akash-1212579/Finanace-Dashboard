@@ -5,7 +5,7 @@ const accountRoute = require("../routes/account.routes");
 const gettransactionsRoute = require("../routes/gettransactions.routes");
 const getTransactionsDateWiseRoute = require("../routes/getTransactionsByDateRange.routes");
 const getTransactionsByModeRoute = require("../routes/getTransactionsByMode.routes");
-
+const categoryRoute = require("../routes/category.routes");
 
 const app = express();
 app.use(express.json());
@@ -18,4 +18,5 @@ app.use("/bankaccount",accountRoute);
 app.use("/gettransactions",gettransactionsRoute);
 app.use("/gettransactionsdaterange",getTransactionsDateWiseRoute);
 app.use("/getTransactionsbymode",getTransactionsByModeRoute);
+app.use("/addcategory",categoryRoute);
 module.exports = app;
