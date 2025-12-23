@@ -1,0 +1,11 @@
+Date,Particulars,cheque/reference no,Debit,Credit,Balance,channel
+2025-03-01,UPI/Swiggy Instamart Bengaluru,UPI123456789,349,,15000,UPI
+2025-03-02,UPI/Uber Trip to Office,UPI123456790,180,,14820,UPI
+2025-03-03,Electricity Bill BESCOM,MOB12345001,2450,,12370,Mobile App
+2025-03-04,Netflix Subscription,NFTX20250304,499,,11871,Card
+2025-03-05,Doctor Consultation Apollo,APOLLO98765,900,,10971,Card
+2025-03-06,Amazon Online Shopping,AMZ20250306,1599,,9372,Card
+2025-03-07,Petrol Pump HPCL,HPCL778899,210,,9162,Card
+2025-03-08,Tea and Snacks Local Cafe,CASH000123,120,,9042,Cash
+2025-03-09,Flight Booking MakeMyTrip,MMT556677,3200,,5842,Card
+2025-03-10,Salary Credit March,NEFT998877,,45000,50842,NEFT

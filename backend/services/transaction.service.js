@@ -57,6 +57,7 @@ function parseCsv(buffer) {
 // MAIN FUNCTION — Process CSV Upload
 // ------------------------------------------------------------
 async function processCSVUpload({ userId, accountId, fileBuffer }) {
+ // console.log("csv upload required data is ",userId,accountId);
   if (!fileBuffer) {
     throw new Error("CSV file buffer missing. Check multer setup.");
   }
@@ -67,6 +68,14 @@ async function processCSVUpload({ userId, accountId, fileBuffer }) {
   if (!rows.length) {
     throw new Error("CSV file is empty or invalid.");
   }
+
+  const account = await prisma.account.findFirst({
+  where: { userId }
+});
+  console.log(account);
+if (!account) {
+  throw new Error("Account does not exist for this user");
+}
 
   // 2) Normalize and prepare for DB insert
   const transactions = rows.map((row) => {

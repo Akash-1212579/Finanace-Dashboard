@@ -1,5 +1,5 @@
 const {signUp,login}  = require("../services/auth.services");
-
+const {createCategory} = require("../services/category.service");
 //controller for signup
 
 async function signupHandler(req,res) {
@@ -26,6 +26,13 @@ async function loginHandler(req,res) {
 
   try {
     const data = await login({email,password});
+    //console.log(data.user.id);
+    // console.log(req.userId);
+    try {
+      await createCategory(data.user.id);
+    } catch (error) {
+      console.log("error while creating categorise ",error.message);
+    }
     res.status(200).json(data);
   } catch (error) {
     console.log("error is",error.message);

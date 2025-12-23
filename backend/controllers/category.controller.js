@@ -2,7 +2,7 @@ const { createCategory } = require("../services/category.service");
 
 async function handleCategory(req, res) {
   try {
-    const userId = Number(req.user.id); // from auth middleware
+    const userId = Number(req.userId); // from auth middleware
 
     const result = await createCategory(userId);
 

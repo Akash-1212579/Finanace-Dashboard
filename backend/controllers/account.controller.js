@@ -17,7 +17,7 @@ async function createAccountHandler(req,res) {
 
     } catch (error) {
         console.log("account controller error is ",error);
-        res.status(400).json({ error: err.message });
+        res.status(400).json({ error: error.message });
     }
 }
 

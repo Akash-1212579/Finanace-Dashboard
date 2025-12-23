@@ -5,7 +5,7 @@
 // // const inputFile = "./data/transactions.csv";
 // // const outputFile = "./data/transactions_with_category.csv";
 
-const prisma = require("../config/db.config");
+// const prisma = require("../config/db.config");
 
 // const rows = [];
 // async function processCsv() {
@@ -48,7 +48,7 @@ async function csvCategorizationScript(userId) {
     where: { userId, categoryId: null },
     select: { id: true, description: true }
   });
-
+  console.log("LLM input is\n",llmInputTransactions);
   if (llmInputTransactions.length === 0) {
     console.log("No uncategorized transactions");
     return;
@@ -57,6 +57,7 @@ async function csvCategorizationScript(userId) {
    let llmCategorizedOutput;
   try {
     llmCategorizedOutput = await categorizeExpense(llmInputTransactions);
+    console.log(llmCategorizedOutput);
   } catch (err) {
     console.error("LLM failed", err);
     return;

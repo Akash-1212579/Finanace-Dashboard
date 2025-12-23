@@ -98,7 +98,7 @@ enum PaymentMode {
 model Category {
   id        Int          @id @default(autoincrement())
   name      String
-  type      CategoryType
+  type      CategoryType?
   userId    Int
   createdAt DateTime     @default(now())
 

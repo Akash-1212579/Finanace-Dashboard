@@ -35,9 +35,9 @@ async function uploadCsvHandler(req, res) {
   try {
     //const userId = req.user.id;
     //const {userId, accountId } = req.body;
-    const userId = Number(req.body.userId);
+    const userId = Number(req.userId);
     const accountId = Number(req.body.accountId);
-    
+    console.log("account id is ",accountId)
     if (!req.file) {
       return res.status(400).json({ error: "No CSV file uploaded" });
     }
@@ -48,7 +48,7 @@ async function uploadCsvHandler(req, res) {
       fileBuffer: req.file.buffer
     });
     
-    csvCategorizationScript(userId).catch(err=>console.log("csv categorization error"));
+    csvCategorizationScript(userId).catch(err=>console.log("csv categorization error",err.message));
     res.json({
       success: true,
       ...result
