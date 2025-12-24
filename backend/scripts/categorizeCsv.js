@@ -35,6 +35,8 @@
 
 // }
 // processCsv();
+
+
 const prisma = require("../config/db.config");
 const {categorizeExpense} = require("../services/expenseCategorizer.service");
 async function csvCategorizationScript(userId) {
@@ -42,21 +44,34 @@ async function csvCategorizationScript(userId) {
 
   //here fetching data of transactions which matches with userId and 
   //categoryId is null 
-   console.log(`Categorization started for user ${userId}`);
+   //console.log(`Categorization started for user ${userId}`);
 
   const llmInputTransactions = await prisma.transaction.findMany({
     where: { userId, categoryId: null },
     select: { id: true, description: true }
   });
-  console.log("LLM input is\n",llmInputTransactions);
   if (llmInputTransactions.length === 0) {
     console.log("No uncategorized transactions");
     return;
   }
+  /*
+  input is {id:1,description:"UPI4783xx/receiverbankName/merchantName/msg"}
+  output should be {id:1,description:"merchantName/msg"}
+  */
+  const llmFilteredInput = [];
+  for(let ele of llmInputTransactions)
+  {
+    const requiredData = ele.description;
+    const dataArray = requiredData.split("/");
+    const requiredDescription = dataArray.slice(-2).join(" for ");
+    llmFilteredInput.push({id:ele.id,description:`paid to ${requiredDescription}`})
+  }
+  console.log("LLM input is\n",llmFilteredInput);
+
 
    let llmCategorizedOutput;
   try {
-    llmCategorizedOutput = await categorizeExpense(llmInputTransactions);
+    llmCategorizedOutput = await categorizeExpense(llmFilteredInput);
     console.log(llmCategorizedOutput);
   } catch (err) {
     console.error("LLM failed", err);
