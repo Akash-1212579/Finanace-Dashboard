@@ -21,6 +21,7 @@ async function createCategory(userId) {
       { name: "Entertainment", userId },
       { name: "Shopping", userId },
       { name: "Healthcare", userId },
+      {name:"P2P",userId},
       { name: "Other", userId },
     ],
     skipDuplicates: true,

@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const fetch = require("node-fetch");
 const APIKEY = process.env.LLM_API_KEY;
-console.log("api key is",APIKEY)
+// console.log("api key is",APIKEY);
 const ALLOWED_CATEGORIES = [
   "Food",
   "Transport",

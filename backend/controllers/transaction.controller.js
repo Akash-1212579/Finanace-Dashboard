@@ -48,13 +48,16 @@ async function uploadCsvHandler(req, res) {
       fileBuffer: req.file.buffer
     });
     
-    csvCategorizationScript(userId).catch(err=>console.log("csv categorization error",err.message));
-    res.json({
-      success: true,
-      ...result
+    await csvCategorizationScript(userId);
+
+
+    res.json({ 
+     "csv upload": "success",
+     "categorization":"success"
     });
 
-  } catch (err) {
+  } catch (err) { 
+   
     console.error(err);
     res.status(500).json({ error: err.message });
   }
