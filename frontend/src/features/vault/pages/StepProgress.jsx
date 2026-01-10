@@ -2,8 +2,7 @@ import { cn } from "@/lib/utils";
 
 export function StepProgress({ currentStep }) {
   const steps = ["Select File", "Upload File", "Complete"];
-  const progress =
-    ((currentStep - 1) / (steps.length - 1)) * 100;
+  const progress = currentStep>=3 ? "100" :((currentStep - 1) / (steps.length - 1)) * 100;
 
   return (
     <div className="w-full max-w-3xl mx-auto">

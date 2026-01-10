@@ -20,10 +20,12 @@ const Sidebar = ({isOpen}) => {
       console.log("sidebar re-rendered");
 
   return (
-    
+    <>
     <aside className={` ${isOpen?"hidden":"block"} md:block
     w-[75vw] md:w-85 h-screen 
          
+
+    
 bg-gradient-to-b
 from-[#0B1220]
 via-[#141D33]
@@ -102,6 +104,8 @@ justify-between`}>
       </div>
     </aside>
     
+    </>
+
   );
 };
 
