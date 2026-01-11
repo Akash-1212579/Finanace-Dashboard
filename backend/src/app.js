@@ -7,6 +7,8 @@ const getTransactionsDateWiseRoute = require("../routes/getTransactionsByDateRan
 const getTransactionsByModeRoute = require("../routes/getTransactionsByMode.routes");
 const createCategoryRoute = require("../routes/category.routes");
 const getCategorizedTransactions = require("../routes/getTransactionsByCategory.routes");
+const getTotalAmountRoute = require("../routes/getTotalAmount.routes");
+
 const app = express();
 app.use(express.json());
 app.get("/",(req,res)=>{
@@ -20,4 +22,5 @@ app.use("/gettransactionsdaterange",getTransactionsDateWiseRoute);
 app.use("/getTransactionsbymode",getTransactionsByModeRoute);
 app.use("/addcategory",createCategoryRoute);
 app.use("/transaction-category",getCategorizedTransactions);
+app.use("/gettotalamount",getTotalAmountRoute); 
 module.exports = app;

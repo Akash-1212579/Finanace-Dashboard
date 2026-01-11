@@ -18,7 +18,7 @@ const Header = ({ userName, bankName, isOpen, onToggleSidebar }) => {
       "
     >
       <button
-        className="md:hidden p-1 rounded-md hover:bg-white/10"
+        className="md:hidden p-1 rounded-md  hover:bg-emerald-400"
         onClick={onToggleSidebar}
         aria-label="Toggle sidebar"
         aria-expanded={isOpen}

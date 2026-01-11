@@ -34,8 +34,10 @@ export default function ImportExport() {
 
 
         try {
+          /// herree is backend end point
           await axios.post("https://httpbin.org/post",formData
           )
+          console.log(formData)
           setProgress(prev=>prev+1);
           setFile(null);
           console.log("File Uploaded")
