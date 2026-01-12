@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const authRoute = require("../routes/auth.routes");
 const transactionRoute = require("../routes/transaction.routes");
 const accountRoute = require("../routes/account.routes");
@@ -11,6 +12,14 @@ const getTotalAmountRoute = require("../routes/getTotalAmount.routes");
 
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 app.get("/",(req,res)=>{
     res.send("Server running Perfectly!");
 });

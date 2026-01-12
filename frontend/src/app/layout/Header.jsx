@@ -15,6 +15,7 @@ const Header = ({ userName, bankName, isOpen, onToggleSidebar }) => {
         flex
         items-center
         justify-between
+        sticky top-0
       "
     >
       <button

@@ -23,7 +23,9 @@ const Sidebar = ({isOpen}) => {
     <>
     <aside className={` ${isOpen?"hidden":"block"} md:block
     w-[75vw] md:w-85 h-screen 
-         
+  sticky
+  top-0
+ 
 
     
 bg-gradient-to-b

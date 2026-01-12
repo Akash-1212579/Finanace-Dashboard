@@ -14,9 +14,9 @@ const AppLayout = () => {
           isOpen?<Menu className="text-red w-6 h-6" />:<X className="text-red w-6 h-6"  size={25} strokeWidth={2.25} />
         } 
 </button> */}
-      <Sidebar isOpen={isOpen}/>
+      <Sidebar  isOpen={isOpen}/>
 
-      <div className="flex-1 flex flex-col ">
+      <div className=" flex-1 flex flex-col ">
         {/* <header className="h-16 border-b bg-background px-6 flex items-center">
           <h1 className="text-lg font-semibold">Hello John Doe</h1>
         </header> */}
