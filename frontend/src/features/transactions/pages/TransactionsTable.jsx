@@ -9,12 +9,14 @@ if (!transactions || transactions.length === 0) {
   }
 console.log("table",transactions);
   return (
-    <div className="w-full bg-white border border-gray-100 rounded-xl overflow-x-auto">
+    <div className=" w-screen sm:w-full
+ bg-white border border-gray-100 rounded-xl overflow-x-auto">
       
       {/* Header */}
       <div
         className="
-          min-w-[900px]
+         min-w-[900px]
+          
           grid grid-cols-5
           px-4 py-3
           bg-gray-50
@@ -56,7 +58,7 @@ console.log("table",transactions);
 
             <div
               className={`text-center font-medium whitespace-nowrap ${
-                tx.category === "income"
+                tx.type === "CREDIT"
                   ? "text-emerald-600"
                   : "text-red-500"
               }`}
@@ -64,7 +66,7 @@ console.log("table",transactions);
               ₹{tx.amount}
             </div>
 
-            <div className="text-center text-gray-400 cursor-pointer whitespace-nowrap">
+            <div className="text-center  text-gray-400 cursor-pointer whitespace-nowrap">
               {tx.paymentMode}
             </div>
           </div>

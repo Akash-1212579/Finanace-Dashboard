@@ -9,6 +9,7 @@ const getTransactionsByModeRoute = require("../routes/getTransactionsByMode.rout
 const createCategoryRoute = require("../routes/category.routes");
 const getCategorizedTransactions = require("../routes/getTransactionsByCategory.routes");
 const getTotalAmountRoute = require("../routes/getTotalAmount.routes");
+const getTotalAmountForCategory = require("../routes/getTotalAmountForCategories.route");
 
 const app = express();
 app.use(express.json());
@@ -32,4 +33,5 @@ app.use("/getTransactionsbymode",getTransactionsByModeRoute);
 app.use("/addcategory",createCategoryRoute);
 app.use("/transaction-category",getCategorizedTransactions);
 app.use("/gettotalamount",getTotalAmountRoute); 
+app.use("/gettotalamountforcategory",getTotalAmountForCategory);
 module.exports = app;

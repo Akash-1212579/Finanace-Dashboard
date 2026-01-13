@@ -15,6 +15,8 @@ export default function Transactions() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  //states for total income and expense
+
 
   useEffect(()=>{
     async function fetchTransactions() {
@@ -36,6 +38,9 @@ export default function Transactions() {
     }
     fetchTransactions();
   },[])
+
+  
+
 
 
   return (

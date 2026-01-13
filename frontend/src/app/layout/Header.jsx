@@ -14,7 +14,7 @@ const Header = ({ userName, bankName, isOpen, onToggleSidebar }) => {
         px-2
         flex
         items-center
-        justify-between
+        justify-between sm:justify-end
         sticky top-0
       "
     >
@@ -31,6 +31,7 @@ const Header = ({ userName, bankName, isOpen, onToggleSidebar }) => {
         )}
       </button>
     {/* <button className="text-red-600 z-999999">Test</button> */}
+   
       <div className="flex items-center gap-6">
         <div className="text-m text-muted-foreground hidden sm:block">
           <span className="font-medium text-foreground">
