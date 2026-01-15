@@ -1,7 +1,7 @@
 const prisma = require("../config/db.config");
 
 async function getTransactionsByDateRange({userId,from,to}) {
-
+    //console.log(new Date(from),new Date(to));
     const whereClasue = {
         userId,
         date:{
@@ -15,6 +15,9 @@ async function getTransactionsByDateRange({userId,from,to}) {
             date:"desc"
         }
     });
+    //console.log("db response is",dateRangeTransactions);
+    //dateRangeTransactions.map(t=>console.log(t.amount,t.type));
+
     return dateRangeTransactions;
 }
 

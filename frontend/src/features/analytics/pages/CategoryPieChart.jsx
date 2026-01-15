@@ -30,8 +30,9 @@ export default function CategoryPieChart() {
 
     async function fetchCategorizedAmounts() {
       try {
-        const res = await api.get("/gettotalamountforcategory")
-        console.log(res.data.result);
+        const res = await api.get("/gettotalamountforcategory");
+        
+        //console.log(res.data.result);
         if (mounted) {
           setCategorizedData(Array.isArray(res.data?.result) ? res.data.result : [])
         }
@@ -83,22 +84,43 @@ const emeraldShades = [
   /* -------------------------------
      4. Total calculation
   -------------------------------- */
-  const totalAmount = React.useMemo(() => {
+ const totalAmount = React.useMemo(() => {
     return chartData.reduce((sum, item) => sum + item.amount, 0)
-  }, [chartData])
+  }, [chartData]);
 
   /* -------------------------------
      5. UI states
   -------------------------------- */
-  if (loading) return <div>Loading...</div>
+ //error handling and loading handling
+if (loading) {
+  return (
+    <Card>
+      <CardContent className="py-10 text-center text-sm text-gray-500">
+        Loading chart...
+      </CardContent>
+    </Card>
+  );
+}
 
-  if (error) return <div className="text-red-500">{error}</div>
+if (error) {
+  return (
+    <Card>
+      <CardContent className="py-10 text-center text-sm text-red-500">
+        {error}
+      </CardContent>
+    </Card>
+  );
+}
 
-  if (!chartData.length) return <div>No data available</div>
-
-  /* -------------------------------
-     6. Render chart
-  -------------------------------- */
+ if (!chartData.length) {
+   return (
+     <Card>
+       <CardContent className="py-10 text-center text-sm text-gray-500">
+         No data available
+       </CardContent>
+     </Card>
+   );
+ }
   return (
     <Card className="flex flex-col w-full">
       <CardHeader className="items-center pb-0">

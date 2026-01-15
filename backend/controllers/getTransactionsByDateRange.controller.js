@@ -12,7 +12,7 @@ async function getTransactionsByDateRangeHandler(req,res) {
     }
 
     const result = await getTransactionsByDateRange({userId,from,to});
-
+    //console.log(result);
       res.json({
       success: true,
       count: result.length,
