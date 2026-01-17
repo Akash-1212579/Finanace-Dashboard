@@ -1,6 +1,8 @@
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import api from "./axiosInstance";
 import { useState , useEffect} from "react";
+
+
 export default function SummaryCards() {
 const [income,setIncome] = useState(0);
 const[incomeLoading,setIncomeLoading] = useState(true);

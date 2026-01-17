@@ -19,6 +19,13 @@ async function getTransactions({userId}) {
       },
       orderBy: {
         date: "desc"
+      },
+      include : {
+        category : {
+            select : {
+                name : true,
+            }
+        }
       }
     });
     return transactions;

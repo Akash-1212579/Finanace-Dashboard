@@ -1,10 +1,22 @@
 import { Search, Filter } from "lucide-react";
 import {Select,SelectContent,SelectGroup,SelectItem,SelectLabel,SelectTrigger,SelectValue} from "@/components/ui/select";
-export default function FilterBar({search,setSearch=()=>{},type,setType=()=>{},category,setCategory
-,mode,setMode}) 
-{   console.log("selected category is ",category);
-    console.log("selected mode is",mode);
-    console.log("selected payment type is",type);
+// import DateRangeFilter from "./DateRange";
+import React from "react";
+import { ChevronDownIcon } from "lucide-react"
+import { format } from "date-fns"
+
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+
+export default function FilterBar({filters,handleFilterChanges}) 
+{   console.log("selected category is ",filters.category);
+    console.log("selected mode is",filters.mode);
+    console.log("selected payment type is",filters.type);
+    
+      
+
+
   return (
     <div
       className=" mt-5 w-full
@@ -28,13 +40,14 @@ export default function FilterBar({search,setSearch=()=>{},type,setType=()=>{},c
       "
     >
       {/* Search */}
-      <div className="flex relative">
+      {/* <div className="flex relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2  h-4 w-4 text-gray-400" />
         <input
           type="text"
           placeholder="Search..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          name="search"
+          value={filters.search}
+          onChange={handleFilterChanges}
           className="
             w-full
             pl-9
@@ -50,11 +63,13 @@ export default function FilterBar({search,setSearch=()=>{},type,setType=()=>{},c
             focus:border-emerald-500
           "
         />
-      </div>
+      </div> */}
+      {/* to sleect date range */}
+     
     {/* filter for category */}
 
     <div className="sm:flex-1">
-     <Select value={category} onValueChange={setCategory}>
+     <Select value={filters.category} onValueChange={(value)=>handleFilterChanges("category",value)}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Select a Category" />
       </SelectTrigger>
@@ -118,7 +133,7 @@ export default function FilterBar({search,setSearch=()=>{},type,setType=()=>{},c
     </div>
     {/* filter for payment mode */}
     <div>
-        <Select value={mode} onValueChange={setMode}>
+        <Select value={filters.mode} onValueChange={(value)=>handleFilterChanges("mode",value)}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Select a Payment mode" />
       </SelectTrigger>
@@ -169,7 +184,7 @@ export default function FilterBar({search,setSearch=()=>{},type,setType=()=>{},c
 
       {/* Type of payment Filter (income/expense) */}
       <div>
-        <Select value={type} onValueChange={setType}>
+        <Select value={filters.type} onValueChange={(value)=>handleFilterChanges("type",value)}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Select a Payment Type" />
       </SelectTrigger>

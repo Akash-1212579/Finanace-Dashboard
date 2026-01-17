@@ -53,7 +53,7 @@ console.log("table",transactions);
             </div>
 
             <div className=" text-center capitalize whitespace-nowrap">
-              {tx.categoryId}
+              {tx.category.name}
             </div>
 
             <div

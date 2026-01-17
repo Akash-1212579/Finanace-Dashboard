@@ -34,7 +34,7 @@ async function getTransactionsByCategory({userId,category}) {
             id :  true
         }
     });
-    console.log("category id is ",categoryId);
+    console.log("category id is ",categoryId.id);
     //now i got the category id now i just have to find all transactions
     //where the categoriId is categoryId
 
