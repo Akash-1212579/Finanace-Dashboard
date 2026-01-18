@@ -41,18 +41,16 @@ export default function AddTransactionPopup({ onSuccess }) {
     setError(null);
 
     try {
-      const res = await api.post("/post", {
+      const res = await api.post("/addtransaction", {
         ...formData,
         amount: Number(formData.amount),
         balanceAfterTxn: 1212,
         rawData: { "this data from": "user input" },
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to save transaction");
-      }
+     
 
-      const savedTransaction = await res.json();
+      const savedTransaction =res.data;
 
       // notify parent if needed
       onSuccess?.(savedTransaction);

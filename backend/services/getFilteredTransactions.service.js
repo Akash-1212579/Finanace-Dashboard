@@ -58,7 +58,14 @@ if (isValidDate(from) || isValidDate(to)) {
 
 
     const filteredTransactions = await prisma.transaction.findMany({
-  where : whereClause
+  where : whereClause,
+  include : {
+    category : {
+      select : {
+        name : true
+      }
+    }
+  }
 ,
   orderBy: {
     date: "desc",

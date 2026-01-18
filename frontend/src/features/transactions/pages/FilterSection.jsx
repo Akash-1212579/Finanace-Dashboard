@@ -147,6 +147,13 @@ export default function FilterBar({filters,handleFilterChanges})
         data-[state=checked]:text-white
       "
        value="UPI">UPI</SelectItem>
+       <SelectItem className="
+        focus:bg-emerald-600 
+        focus:text-white
+        data-[state=checked]:bg-emerald-600
+        data-[state=checked]:text-white
+      "
+       value="CASH">CASH</SelectItem>
           <SelectItem className="
         focus:bg-emerald-600 
         focus:text-white

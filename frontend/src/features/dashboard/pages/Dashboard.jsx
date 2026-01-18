@@ -3,6 +3,7 @@ import { ArrowDownRight, ArrowUpRight, Plus, FileText, Upload } from "lucide-rea
 import SummaryCards from '../../transactions/pages/SummaryCards';
 import { Link } from "react-router-dom";
 import AddTransactionPopup from './AddNewTransaction';
+import ImportBankStatementSection from './ImportBankStatementSection';
 
 export default function Dashboard() {
   return(
@@ -41,19 +42,7 @@ export default function Dashboard() {
       </div>
 
       {/* RECENT TRANSACTIONS */}
-      <div className="rounded-xl border border-slate-200 bg-white p-6">
-        <h2 className="text-lg font-semibold text-slate-800 mb-4">
-          Recent Transactions
-        </h2>
-
-        <ul className="space-y-4">
-          <TransactionItem name="Food" amount="-₹250" date="Today" expense />
-          <TransactionItem name="Salary" amount="+₹30,000" date="Yesterday" />
-          <TransactionItem name="Travel" amount="-₹1,200" date="Jan 14" expense />
-          <TransactionItem name="Shopping" amount="-₹3,000" date="Jan 13" expense />
-          <TransactionItem name="Rent" amount="-₹8,000" date="Jan 12" expense />
-        </ul>
-      </div>
+     <ImportBankStatementSection/>
     </div>
   );
 }

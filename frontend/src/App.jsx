@@ -9,7 +9,7 @@ import ImportExport from "./features/vault/pages/ImportExport";
 import Settings from "./features/settings/pages/Settings";
 
 function App() {
-      localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJpYXQiOjE3Njg2NDk2NTYsImV4cCI6MTc2ODczNjA1Nn0.A9uNNCQgBHWJpINUJ0Xk9GPzEj8Y-hec4CP7zfZOF10");
+      localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJpYXQiOjE3Njg3MjI0OTgsImV4cCI6MTc2ODgwODg5OH0.nPcBpXqhYudzWuEZQiCMpcCG36vFeSbIQN2VRAYUVoo");
 
   return (
     

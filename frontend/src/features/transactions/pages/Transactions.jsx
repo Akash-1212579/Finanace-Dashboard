@@ -43,7 +43,7 @@ const hasAciveFilter = Object.values(filters).some(val=> val!=null && val!="");
     async function fetchTransactions() {
       try {
         const token = localStorage.getItem("token");
-        const res = hasAciveFilter ? await api.get(`/getfilteredtransactions?from=${filters.startDate}&to=${filters.endDate}&type=${filters.type}&category=${filters.category}&mode=${filters.mode}`)
+        const res = hasAciveFilter ? await api.get(`/getfilteredtransactions?type=${filters.type}&category=${filters.category}&mode=${filters.mode}`)
                                      :await api.get("/gettransactions")
           setTransactions(res.data.transactions);
          // setFilteredTransactions(res.data.transactions);

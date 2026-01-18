@@ -13,7 +13,7 @@ const getTotalAmountForCategory = require("../routes/getTotalAmountForCategories
 const getAmountByModeRoute = require("../routes/getAmountByMode.route");
 const getMonthlyAmountRoute = require("../routes/getMonthlyAmountForGivenYear.route");
 const getFilteredTransactionsRoute = require("../routes/getFilteredTransactions.route");
-
+const addTransactionRoute = require("../routes/addTransaction.routes");
 const app = express();
 app.use(express.json());
 app.use(
@@ -40,4 +40,5 @@ app.use("/gettotalamountforcategory",getTotalAmountForCategory);
 app.use("/getamountbymode",getAmountByModeRoute);
 app.use("/getmonthlyamountforyear",getMonthlyAmountRoute);
 app.use("/getfilteredtransactions",getFilteredTransactionsRoute);
+app.use("/addtransaction",addTransactionRoute);
 module.exports = app;
