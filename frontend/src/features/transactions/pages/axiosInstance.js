@@ -13,7 +13,14 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    if(error.response?.status ==401)
+    {console.log(error);
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/";
+    }
+    return Promise.reject(error)}
 );
 
 export default api;

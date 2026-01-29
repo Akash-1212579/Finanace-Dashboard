@@ -3,14 +3,16 @@ const {createCategory} = require("../services/category.service");
 //controller for signup
 
 async function signupHandler(req,res) {
-    const {name,email,password} = req.body;
-    if(!name || !email || !password)
+    const {name,email,password , accountName , accountNumber} = req.body;
+        console.log("signup details",name,email,password,accountName,accountNumber);
+
+    if(!name || !email || !password || !accountName || !accountNumber)
     {
         throw new Error("Please fill all credentials!");
     }
 
     try {
-        const user = await signUp({name,email,password});
+        const user = await signUp({name,email,password , accountName , accountNumber});
         res.status(201).json(user);
     } catch (error) {
         console.log("error is ",error.message);

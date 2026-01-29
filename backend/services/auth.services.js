@@ -5,7 +5,7 @@ const SALT_Rounds = 10;
 
 //creating a service for signup
 
-async function signUp({name,email,password}) {
+async function signUp({name,email,password , accountName , accountNumber}) {
     // first checking that a user is already exists or not
     const existingUser = await prisma.user.findUnique({
         where :{email}
@@ -25,7 +25,43 @@ async function signUp({name,email,password}) {
            passwordHash: hashedPassword
         }
     });
-    return user;
+
+const userData = await prisma.user.findUnique({
+  where: { email },
+  select: { id: true }
+});
+
+if (!userData) {
+  throw new Error("User not found");
+}
+
+const userId = userData.id;
+
+    const account = await prisma.account.create({
+        data :{
+            name : accountName,
+            bankName : "Bank Of Maharashtra",
+            balance : 0,
+            userId : userId,
+            accountNumber : accountNumber
+        }
+    });
+
+   const token = jwt.sign(
+    { userId: user.id },
+    process.env.JWT_SECRET,
+    { expiresIn: "1d" }
+  );
+  //now existing users data returning to the routes
+
+  return{
+    token,
+    user:{
+        id : user.id,
+        name : user.name,
+        email : user.email
+    }
+  };
 }
 
 // now creating a Login Service
