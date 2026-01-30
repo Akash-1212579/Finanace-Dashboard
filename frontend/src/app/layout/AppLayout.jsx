@@ -7,7 +7,7 @@ const AppLayout = () => {
   const userData = JSON.parse(localStorage.getItem("user"));
   const userName = userData.name.toUpperCase();
  // console.log(userData,userName);
-  const[isOpen,setIsOpen] = useState(false);
+  const[isOpen,setIsOpen] = useState(true);
     console.log("layout re-rendered");
   console.log(isOpen);
   return (

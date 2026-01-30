@@ -63,7 +63,7 @@ async function csvCategorizationScript(userId) {
   {
     const requiredData = ele.description;
     const dataArray = requiredData.split("/");
-    const requiredDescription = dataArray.slice(-2).join(" for ");
+    const requiredDescription = dataArray.slice(2).join(" for ");
     llmFilteredInput.push({id:ele.id,description:`paid to ${requiredDescription}`})
   }
   console.log("LLM input is\n",llmFilteredInput);

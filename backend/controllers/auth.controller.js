@@ -13,6 +13,11 @@ async function signupHandler(req,res) {
 
     try {
         const user = await signUp({name,email,password , accountName , accountNumber});
+        try {
+      await createCategory(user.user.id);
+    } catch (error) {
+      console.log("error while creating categorise ",error.message);
+    }
         res.status(201).json(user);
     } catch (error) {
         console.log("error is ",error.message);

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -145,8 +146,27 @@ function Register() {
               Register
             </Button>
           </form>
+          
         </CardContent>
+        <Link
+          to="/"
+          className="
+    relative ml-auto
+    text-center px-3 py-2 text-sm font-medium text-slate-200
+    transition-all duration-300 ease-out
+    hover:text-emerald-400
+    after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0
+    after:bg-emerald-400 after:transition-all after:duration-300
+    hover:after:w-full
+    focus-visible:outline-none focus-visible:ring-2
+    focus-visible:ring-emerald-400/60
+    rounded-md
+  "
+        >
+          have an account Login...
+        </Link>
       </Card>
+      
     </div>
   );
 }

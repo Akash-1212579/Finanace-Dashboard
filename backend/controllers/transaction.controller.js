@@ -36,15 +36,15 @@ async function uploadCsvHandler(req, res) {
     //const userId = req.user.id;
     //const {userId, accountId } = req.body;
     const userId = Number(req.userId);
-    const accountId = Number(req.body.accountId);
-    console.log("account id is ",accountId)
+    //const accountId = Number(req.body.accountId);
+    //console.log("account id is ",accountId)
     if (!req.file) {
       return res.status(400).json({ error: "No CSV file uploaded" });
     }
 
     const result = await processCSVUpload({
       userId,
-      accountId,
+      
       fileBuffer: req.file.buffer
     });
     

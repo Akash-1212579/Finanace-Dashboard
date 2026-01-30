@@ -5,6 +5,7 @@ import { StepProgress } from "./StepProgress";
 import { UploadInfoSteps } from "./UploadInfoSteps";
 import { useState } from "react";
 import axios from "axios";
+import api from "../../transactions/pages/axiosInstance";
 export default function ImportExport() {
   const[file,setFile] = useState(null);
   const[progressNum,setProgress] = useState(1);
@@ -30,13 +31,13 @@ export default function ImportExport() {
     {
         setProgress(prev=>prev+1);
         const formData = new FormData();
-        formData.append("file",file[0]);
+        formData.append("file",file);
 
 
         try {
           /// herree is backend end point
-          await axios.post("https://httpbin.org/post",formData
-          )
+          // await axios.post("https://httpbin.org/post",formData)
+          await api.post("uploadcsv/upload",formData);
           console.log(formData)
           setProgress(prev=>prev+1);
           setFile(null);
