@@ -4,21 +4,33 @@ import { Wallet,Menu, X,
   BarChart3,
   Upload,
   Settings,
+  LogOut ,
 } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/auth/authSlice";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
   { label: "Transactions", icon: Receipt, path: "/transactions" },
   { label: "Analytics", icon: BarChart3, path: "/analytics" },
   { label: "Import/Export", icon: Upload, path: "/vault" },
-  { label: "Settings", icon: Settings, path: "/settings" },
+  { label: "Profile", icon: Settings, path: "/profile" },
 ];
 
-const Sidebar = ({isOpen}) => {
-      console.log("sidebar re-rendered");
-
+const Sidebar = ({isOpen ,userName}) => {
+      //console.log("sidebar re-rendered");
+      // const userData = localStorage.getItem("user");
+      // console.log("user Data is ", userData);
+      // const userName = userData.name;
+      const dispatch = useDispatch();
+      const handleLogout = ()=>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        dispatch(logout());
+      }
   return (
     <>
     <aside className={` ${isOpen?"hidden":"block"} md:block
@@ -38,8 +50,8 @@ bg-white/5
 border-r border-white/10
 shadow-2xl
 flex flex-col
-justify-between`}>
-      {/* 1️⃣ Brand */}
+`}>
+      
      
 
       <div className="px-6 py-5 border-b border-white/10">
@@ -54,7 +66,7 @@ justify-between`}>
         </div>
       </div>
 
-      {/* 2️⃣ Navigation */}
+      {/*  Navigation */}
       <nav className="flex-1 px-4 py-6 space-y-1">
         {navItems.map(({ label, icon: Icon, path }) => (
           <NavLink
@@ -78,8 +90,8 @@ justify-between`}>
         ))}
       </nav>
 
-      {/* 3️⃣ Monthly summary */}
-      <div className="px-4 pb-4">
+      {/*  Monthly summary */}
+      {/* <div className="px-4 pb-4">
         <div className="rounded-xl bg-white/10 p-4">
           <p className="text-xs text-white/60">This Month</p>
           <p className="text-lg font-semibold text-emerald-400">
@@ -90,18 +102,46 @@ justify-between`}>
             <div className="h-1 w-2/3 bg-emerald-500 rounded-full" />
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {/* 4️⃣ User */}
+      {/*  User */}
       <div className="px-4 py-4 border-t border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-indigo-500 to-emerald-500 flex items-center justify-center font-semibold">
+        <div className="flex mt-0 md:mt-auto lg:mt-[66%] items-end items-center gap-3">
+          <div
+          className="
+            h-10
+            w-10
+            rounded-full
+            bg-[#00BC7D]
+            flex
+            items-center
+            justify-center
+            text-sm
+            font-semibold
+            text-slate-100
+            cursor-pointer
+            select-none
+          "
+        >
+          {userName?.[0] ?? "U"}
+        </div>
+          {/* <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-indigo-500 to-emerald-500 flex items-center justify-center font-semibold">
             JD
-          </div>
+          </div> */}
           <div className="flex-1">
-            <p className="text-sm font-medium">John Doe</p>
+            <p className="text-sm text-emerald-500 font-medium">{userName ? userName : "Guest"}</p>
             <p className="text-xs text-white/60">Premium Plan</p>
           </div>
+              <Button
+      variant="ghost"
+      size="icon"
+      aria-label="Logout"
+       className="text-muted-foreground hover:text-emerald-600 hover:bg-emerald-300"
+      onClick={handleLogout}
+    >
+      <LogOut className="h-5 w-5" />
+    </Button>
+
         </div>
       </div>
     </aside>

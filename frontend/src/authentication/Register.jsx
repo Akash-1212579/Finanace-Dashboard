@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Eye, EyeOff } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -20,6 +21,7 @@ import { registerUser } from "../redux/auth/authThunks";
 function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
   const { isAuthenticated, loading, errro } = useSelector(
     (state) => state.auth,
   );
@@ -46,11 +48,12 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log("handleSubmit");
     console.log("Register payload:", form);
     const isFormInvalid = Object.values(form).some(
       (value) => value.trim() === "",
     );
-    if(isFormInvalid) return alert("Enter all credentials!");
+    if (isFormInvalid) return alert("Enter all credentials!");
     dispatch(registerUser(form));
   };
 
@@ -94,16 +97,28 @@ function Register() {
             </div>
 
             {/* Password */}
-            <div>
+            <div >
               <Label className="text-slate-300">Password</Label>
-              <Input
-                type="password"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                placeholder="••••••••"
-                className="bg-slate-950 border-slate-700 text-slate-200 focus-visible:ring-emerald-500"
-              />
+              <div className="flex">
+                <Input
+                  type={show ? "text" : "password"}
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  placeholder="••••••••"
+                  className="bg-slate-950 border-slate-700 text-slate-200 focus-visible:ring-emerald-500"
+                />
+                <button type="button"
+                  className="ml-5"
+                  onClick={() => setShow((prev) => !prev)}
+                >
+                  {show ? (
+                    <EyeOff className="text-white" size={20} />
+                  ) : (
+                    <Eye className="text-white" size={20} />
+                  )}
+                </button>
+              </div>
             </div>
 
             {/* Account Name */}
@@ -146,7 +161,6 @@ function Register() {
               Register
             </Button>
           </form>
-          
         </CardContent>
         <Link
           to="/"
@@ -166,7 +180,6 @@ function Register() {
           have an account Login...
         </Link>
       </Card>
-      
     </div>
   );
 }

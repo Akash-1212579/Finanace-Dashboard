@@ -7,8 +7,8 @@ export const loginUser = (Credentials)=>async(dispatch)=>{
     try {
         const res = await loginUserService(Credentials);
         dispatch(authSuccess(res));
-        localStorage.setItem("token",res.token);
-        localStorage.setItem("user",JSON.stringify(res.user));
+        sessionStorage.setItem("token",res.token);
+        sessionStorage.setItem("user",JSON.stringify(res.user));
 
     } catch (error) {
         const message ="Error occurred while login check credentials";
@@ -23,8 +23,8 @@ export const registerUser = (credentials)=> async (dispatch)=>{
     try {
         const res = await registerUserSevice(credentials);
         dispatch(authSuccess(res));
-        localStorage.setItem("token",res.token);
-        localStorage.setItem("user",JSON.stringify(res.user));
+        sessionStorage.setItem("token",res.token);
+        sessionStorage.setItem("user",JSON.stringify(res.user));
     } catch (error) {
          const message ="Error occurred while Register check credentials";
          dispatch(authFaillure(message));

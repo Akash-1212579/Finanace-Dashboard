@@ -6,6 +6,7 @@ import { UploadInfoSteps } from "./UploadInfoSteps";
 import { useState } from "react";
 import axios from "axios";
 import api from "../../transactions/pages/axiosInstance";
+import CsvContainer from "./CsvFileContainer";
 export default function ImportExport() {
   const[file,setFile] = useState(null);
   const[progressNum,setProgress] = useState(1);
@@ -119,6 +120,7 @@ export default function ImportExport() {
             Upload
           </Button>
         </div>
+        <CsvContainer/>
       </div>
     </>
   );

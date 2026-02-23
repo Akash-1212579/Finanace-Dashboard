@@ -14,7 +14,7 @@ const Header = ({ userName, bankName, isOpen, onToggleSidebar }) => {
         px-2
         flex
         items-center
-        justify-between sm:justify-end
+        justify-between md:justify-end 
         sticky top-0
       "
     >
@@ -73,6 +73,7 @@ const Header = ({ userName, bankName, isOpen, onToggleSidebar }) => {
           "
         >
           {userName?.[0] ?? "U"}
+          
         </div>
       </div>
     </header>
