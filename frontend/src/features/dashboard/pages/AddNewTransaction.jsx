@@ -39,8 +39,13 @@ export default function AddTransactionPopup({ onSuccess }) {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
+    
     try {
+      const isValidForm = Object.values(formData).every(data=>data.trim()!="");
+      if(!isValidForm)
+      { setError("Please Enter All Details Of Transaction")
+        return;
+      }
       const res = await api.post("/addtransaction", {
         ...formData,
         amount: Number(formData.amount),

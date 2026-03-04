@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 export default function TransactionsTable({transactions}) {
+  console.log("transactions",transactions);
+  // transactions.map((tr,index)=>console.log(tr.category.name , index));
 if (!transactions || transactions.length === 0) {
     return (
       <div className="text-center text-sm text-gray-500 py-10">
@@ -7,7 +9,6 @@ if (!transactions || transactions.length === 0) {
       </div>
     );
   }
-console.log("table",transactions);
   return (
     <div className=" w-screen sm:w-full
  bg-white border border-gray-100 rounded-xl overflow-x-auto">
@@ -51,9 +52,9 @@ console.log("table",transactions);
             <div className="truncate">
               {tx.description}
             </div>
-
+            
             <div className=" text-center capitalize whitespace-nowrap">
-              {tx.category.name}
+              {tx.category?.name ?? "Other"}
             </div>
 
             <div
